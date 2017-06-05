@@ -20,10 +20,6 @@ class Parking < ApplicationRecord
   end
 
   def calculate_amount
-    byebug
-    puts "----"
-    puts self.parking_type
-    puts "----"
     if self.amount.blank? && self.start_at.present? && self.end_at.present?
       if self.user.blank?
         self.amount = calculate_guest_term_amount  # 一般费率
