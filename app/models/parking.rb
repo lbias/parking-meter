@@ -23,10 +23,10 @@ class Parking < ApplicationRecord
     if self.amount.blank? && self.start_at.present? && self.end_at.present?
       if self.user.blank?
         self.amount = calculate_guest_term_amount  # 一般费率
-      elsif self.parking_type == "long-term"
-          self.amount = calculate_long_term_amount # 短期费率
       elsif self.parking_type == "short-term"
-        self.amount = calculate_short_term_amount  # 长期费率
+        self.amount = calculate_short_term_amount # 短期费率
+      elsif self.parking_type == "long-term"
+        self.amount = calculate_long_term_amount  # 长期费率
       end
     end
   end
@@ -52,5 +52,6 @@ class Parking < ApplicationRecord
       self.amount = 1200
     else
       self.amount = (duration.to_f / 720).ceil * 1600
+    end 
   end
 end
