@@ -20,6 +20,9 @@ class Parking < ApplicationRecord
   end
 
   def calculate_amount
+    puts "----"
+    puts self.parking_type
+    puts "----"    
     if self.amount.blank? && self.start_at.present? && self.end_at.present?
       if self.user.blank?
         self.amount = calculate_guest_term_amount  # 一般费率
@@ -52,6 +55,6 @@ class Parking < ApplicationRecord
       self.amount = 1200
     else
       self.amount = (duration.to_f / 720).ceil * 1600
-    end 
+    end
   end
 end
